@@ -32,10 +32,10 @@ sudo dnf remove docker \
                   podman \
                   runc
                   
-- sudo dnf -y install dnf-plugins-core
-- sudo dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo
-- en la ruta /etc/containerd agregamos el archivo config.toml adjunto
-- systemctl enable --now containerd
+sudo dnf -y install dnf-plugins-core
+sudo dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo
+en la ruta /etc/containerd agregamos el archivo config.toml adjunto
+systemctl enable --now containerd
 
 6- Mapear el repo de kubernetes:
 
