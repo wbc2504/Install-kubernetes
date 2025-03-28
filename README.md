@@ -4,6 +4,7 @@ Instalación de un cluster  de Kubernetes de manera manual
 Prerrequisitos de sistema operativo:
 1- systemctl status firewalld.service
 2- vim /etc/fstab comentar la linea siguiente:
+
 ![image](https://github.com/user-attachments/assets/e0285564-cd85-4d0f-8a06-05c259487099)
 
 3- cambiar SELINUX a modo permisivo para que los contenedores puedan acceder a los archivos del sistema. 
