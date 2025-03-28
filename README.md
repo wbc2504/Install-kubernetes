@@ -6,7 +6,10 @@ Prerrequisitos de sistema operativo:
 2- vim /etc/fstab comentar la linea siguiente:
 ![image](https://github.com/user-attachments/assets/e0285564-cd85-4d0f-8a06-05c259487099)
 
-3- sudo sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config --> cambiar SELINUX a modo permisivo para que los contenedores puedan acceder a los archivos del sistema.
+3- cambiar SELINUX a modo permisivo para que los contenedores puedan acceder a los archivos del sistema. 
+
+sudo sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
+
 4- El siguiente comando configura el reenvio de paquetes entre servidores:
 
 cat <<EOF | tee /etc/sysctl.d/99-kubernetes-cri.conf
