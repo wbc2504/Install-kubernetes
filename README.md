@@ -77,6 +77,8 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 sudo curl https://raw.githubusercontent.com/projectcalico/calico/v3.29.2/manifests/calico.yaml -O
 vim calico.yaml
 buscar la sesion CALICO_IPV4POOL_CIDR e indicarl el CIDR utilizado para la instalación del cluster:
+
+
 ![image](https://github.com/user-attachments/assets/ec6af479-8f08-483a-baf7-1713a240abf8)
 
 kubectl apply -f calico.yaml
