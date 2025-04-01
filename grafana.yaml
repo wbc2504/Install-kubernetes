@@ -1,0 +1,124 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: grafana-pvc
+  namespace: grafana
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: grafana
+  name: grafana
+  namespace: grafana
+spec:
+  selector:
+    matchLabels:
+      app: grafana
+  template:
+    metadata:
+      labels:
+        app: grafana
+    spec:
+      securityContext:
+        fsGroup: 472
+        supplementalGroups:
+          - 0
+      containers:
+        - name: grafana
+          image: grafana/grafana:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
+              name: http-grafana
+              protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /robots.txt
+              port: 3000
+              scheme: HTTP
+            initialDelaySeconds: 10
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 2
+          livenessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            successThreshold: 1
+            tcpSocket:
+              port: 3000
+            timeoutSeconds: 1
+          resources:
+            requests:
+              cpu: 250m
+              memory: 750Mi
+          volumeMounts:
+            - mountPath: /var/lib/grafana
+              name: grafana-pv
+            - name: ca-certificates
+              readOnly: true
+              mountPath: /etc/ssl/certs
+      volumes:
+        - name: grafana-pv
+          persistentVolumeClaim:
+            claimName: grafana-pvc
+        - name: ssl-certs
+          secret:
+            secretName: grafana-cert-secret
+            defaultMode: 420
+        - name: ca-certificates
+          emptyDir: {}
+      initContainers:
+        - name: update-ca-certificates
+          image: ubuntu:latest
+          command:
+            - sh
+            - '-c'
+            - >
+              apt-get update &&               apt-get install -y ca-certificates
+              &&               cp /certs/* /etc/ssl/certs/ &&              
+              update-ca-certificates
+          resources: {}
+          volumeMounts:
+            - name: ssl-certs
+              mountPath: /certs
+            - name: ca-certificates
+              mountPath: /etc/ssl/certs
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: grafana-cert-secret
+  namespace: grafana
+data:
+  custom-cert.crt: >-
+    LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUdpekNDQlhPZ0F3SUJBZ0lJWit0QmVRVlhTSE13RFFZSktvWklodmNOQVFFTEJRQXdnYlF4Q3pBSkJnTlYKQkFZVEFsVlRNUkF3RGdZRFZRUUlFd2RCY21sNmIyNWhNUk13RVFZRFZRUUhFd3BUWTI5MGRITmtZV3hsTVJvdwpHQVlEVlFRS0V4RkhiMFJoWkdSNUxtTnZiU3dnU1c1akxqRXRNQ3NHQTFVRUN4TWthSFIwY0RvdkwyTmxjblJ6CkxtZHZaR0ZrWkhrdVkyOXRMM0psY0c5emFYUnZjbmt2TVRNd01RWURWUVFERXlwSGJ5QkVZV1JrZVNCVFpXTjEKY21VZ1EyVnlkR2xtYVdOaGRHVWdRWFYwYUc5eWFYUjVJQzBnUnpJd0hoY05NalV3TXpFM01UVTFOVFEyV2hjTgpNall3TkRBeE1UTTFNek14V2pBWU1SWXdGQVlEVlFRRERBMHFMbUZ5ZFhNdVkyOXRMbU52TUlJQklqQU5CZ2txCmhraUc5dzBCQVFFRkFBT0NBUThBTUlJQkNnS0NBUUVBbGtxVm1BdGFrQklqbE1YUndvd1NMbzNBYXVQQkxUZFAKajcvRGNCR1I1ZTdESDJmQldmTmZCSFlvb09IYW5wWVVzcDRyZjYxRnltbS9YTnczbEtyK1Vlb2VMYmJjYjE3OQpYdVo2eWlnUWsrSFNLbWRUVDRPZ21RWW1tL3VuVlp1TEY2UytJRXF1SGhZUndKTi9tSGdoRStQNWt5Y25xeWQ3CmdLY2lEQzVrTzVxR1E5ZUpQTFdhd1pKeUJNOHZmNkcrNGtaMVRvQXpLUC85Y0MycUs3QUYyZXFtOTltU0FIdFcKWmkyV2ZEVURmSTBHVUl1MFBBQWhpRTJoYzQ0MmRKVWwvNFpTMVNvbkljaHExTjg3VzRwSlFqTnNzOWVGdTZCbwozVWJhdjVtRDA2dVZ6b0Z1R0ZZOTlCem1HcnpCb2g3enVzcFpVdWtKQm5aelovY25oaWo4c3dJREFRQUJvNElECk9qQ0NBell3REFZRFZSMFRBUUgvQkFJd0FEQWRCZ05WSFNVRUZqQVVCZ2dyQmdFRkJRY0RBUVlJS3dZQkJRVUgKQXdJd0RnWURWUjBQQVFIL0JBUURBZ1dnTURrR0ExVWRId1F5TURBd0xxQXNvQ3FHS0doMGRIQTZMeTlqY213dQpaMjlrWVdSa2VTNWpiMjB2WjJScFp6SnpNUzAwTVRneE1DNWpjbXd3WFFZRFZSMGdCRll3VkRCSUJndGdoa2dCCmh2MXRBUWNYQVRBNU1EY0dDQ3NHQVFVRkJ3SUJGaXRvZEhSd09pOHZZMlZ5ZEdsbWFXTmhkR1Z6TG1kdlpHRmsKWkhrdVkyOXRMM0psY0c5emFYUnZjbmt2TUFnR0JtZUJEQUVDQVRCMkJnZ3JCZ0VGQlFjQkFRUnFNR2d3SkFZSQpLd1lCQlFVSE1BR0dHR2gwZEhBNkx5OXZZM053TG1kdlpHRmtaSGt1WTI5dEx6QkFCZ2dyQmdFRkJRY3dBb1kwCmFIUjBjRG92TDJObGNuUnBabWxqWVhSbGN5NW5iMlJoWkdSNUxtTnZiUzl5WlhCdmMybDBiM0o1TDJka2FXY3kKTG1OeWREQWZCZ05WSFNNRUdEQVdnQlJBd3IwbmpzdzBnekNpTTlmN2JMUHd0Q3lBempBbEJnTlZIUkVFSGpBYwpnZzBxTG1GeWRYTXVZMjl0TG1OdmdndGhjblZ6TG1OdmJTNWpiekFkQmdOVkhRNEVGZ1FVaGVaTUVEK3hjbTg0CnVGQnBKS0J6bHhUUTh4Z3dnZ0Y4QmdvckJnRUVBZFo1QWdRQ0JJSUJiQVNDQVdnQlpnQjFBQTVYbEx6enJxaysKTXhzc21RZXo5NURmbThJOWNUSWwzU0dwSmF4aHhVNGhBQUFCbGFUUmU5TUFBQVFEQUVZd1JBSWdNMzRUYTNpUgpqV3A0OThIeWd0VG5MdElRWHl0djlFTVlTa0dDVmpBVXZOVUNJRlVPRVJtRDIrekdFak1PaG5RdzZtOS9VRjlRCkVvNWdRVVJMMWJpdDdBWkRBSFlBWkJIRWJLUVM3S2VKSEtJQ0xnQzhxMDhvQjlRZU5TZXI2djdWQThsOXpmQUEKQUFHVnBORjh6Z0FBQkFNQVJ6QkZBaUFhdWZ4VXYyajJBWHorZmV0b1Zqazk1b0tCM3pUYjBIekgyaVVENjNxSQpYUUloQUswbm4rL2Jpc2VMOGpmSVRaOXU1RHhrVFIrK3ErM3BGWGlKTzFFYUxRU3ZBSFVBeXpqM0ZZbDhoS0ZFClgxdkIzZnZKYnZLYVdjMUhDbWtGaGJETEZNTVVXT2NBQUFHVnBORitPUUFBQkFNQVJqQkVBaUFtNy9NcytuQkkKVlZ2a1dyS2wxdktBRzM0TmoyTFozYmJFUEtMZ2FIeUE4Z0lnSkcwc2lWb21tWDZPQXlOa1JsTFJCckRoSERSVAppSEpzVS9VNFQ0akZUYW93RFFZSktvWklodmNOQVFFTEJRQURnZ0VCQUNsY0d6Z3NVNmIzTVRkNzEwb3o0dFhhCjU5bTR1Mmltai9vdndRb0lWZTlMMkxRc29zZzhvM1BxS2VuWHBlYU5pc0dxbmJlaUdwMHdOVkhkeHp6SjVuQ1oKNms5T2JNQmJadE9tY3hYUUtzdVR4TWxpOGhlSkFOUERaQ0FCVE5NdWJTSzJGdXdRL0xHWklMTmdFWWJsLzN4NAp3WHFpNXY3MU9aUUZzYkZLbGFYeU9VQlJXZ0ZiM0J2OHhydFZFSkJuVFdESUdUNWx6SGd0OUhlanppOFIvRzRICjl3cGY4VjRKZjFUOThzYzdJSXZJTGV4SFZuaWNtN2JXTmhJRlVLeEZnQ1hIUlFpMFEwQU1NNkFpYVEvL3lCbTAKUW9pTzZMaWN2STlxQ2p1MmFrUUxpS2dPNE5GWXJGZVBDVVhidjNUQXhSZEd3cFp5Yk5vamh1MXpIVjl1Z3VZPQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
+type: Opaque
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafana
+  namespace: grafana
+spec:
+  ports:
+    - port: 3000
+      protocol: TCP
+      targetPort: http-grafana
+  selector:
+    app: grafana
+  sessionAffinity: None
+  type: LoadBalancer
