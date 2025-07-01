@@ -53,6 +53,8 @@ EOF
 
 sudo yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
 
+Despues de ejecutar los pasos anteriores desactivar el proxy de los servidores para porder arrancar el master
+
 8- iniciar cluster nodo principal
 
 kubeadm init --control-plane-endpoint=10.140.3.191:6443 --pod-network-cidr "10.244.0.0/16
