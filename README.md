@@ -1,4 +1,4 @@
-# 📘 Instalación de un cluster  de Kubernetes de k8s manera manual
+# 📘 Instalación de un cluster  de Kubernetes de k8s con kubeadm
 
 ## 📌Prerrequisitos de sistema operativo:
  * Desactivar firewall del servidor.
