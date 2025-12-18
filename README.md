@@ -61,7 +61,7 @@ En la ruta /etc/containerd agregamos el archivo config.toml adjunto en este repo
 systemctl enable --now containerd
 ```
 
-## 📌 Instalacion de kubernetes:
+## <img width="50" height="30" alt="image" src="https://github.com/user-attachments/assets/8cde9c1c-b029-4b9b-9175-cc84217cafbe" /> Instalacion de kubernetes:
 
   * Configurar repositorio para descargar paquetes de Kubernetes
 ```
