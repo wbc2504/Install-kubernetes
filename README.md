@@ -1,4 +1,4 @@
-# <img width="50" height="50" alt="image" src="https://github.com/user-attachments/assets/e62c4f1b-b773-4502-9d49-d7adb3163929" /> Instalación de un cluster  de Kubernetes de k8s con kubeadm 
+# <img width="50" height="25" alt="image" src="https://github.com/user-attachments/assets/e62c4f1b-b773-4502-9d49-d7adb3163929" /> Instalación de un cluster  de Kubernetes de k8s con kubeadm 
 
 
 ## 📌Prerrequisitos de sistema operativo:
