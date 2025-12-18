@@ -1,7 +1,10 @@
 # 📘 Instalación de un cluster  de Kubernetes K8S manera manual
 
 ## 📌Prerrequisitos de sistema operativo:
-  * systemctl status firewalld.service
+ * Desactivar firewall del servidor
+```
+systemctl disable firewalld.service
+```
   * vim /etc/fstab comentar la linea siguiente:
 
 ![image](https://github.com/user-attachments/assets/e0285564-cd85-4d0f-8a06-05c259487099)
