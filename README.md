@@ -104,7 +104,7 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 Nota: No dar permisos al usuario root para kubectl.
 
 
-## 📌Instalación del complemento de red:
+## <img width="70" height="30" alt="image" src="https://github.com/user-attachments/assets/309d0d15-e6a4-4460-8340-4437da98c294" /> Instalación del complemento de red:
 
 #### Instalación calico.
 ```
