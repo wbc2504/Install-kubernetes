@@ -1,4 +1,4 @@
-## 📘 Instalación de un cluster  de Kubernetes K8S manera manual
+# 📘 Instalación de un cluster  de Kubernetes K8S manera manual
 
  # Prerrequisitos de sistema operativo:
   * systemctl status firewalld.service
