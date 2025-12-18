@@ -1,6 +1,6 @@
-## 📘 Instalación de un cluster  de Kubernetes de k8s con kubeadm
+# 📘 Instalación de un cluster  de Kubernetes de k8s con kubeadm
 
-### 📌Prerrequisitos de sistema operativo:
+## 📌Prerrequisitos de sistema operativo:
  * Desactivar firewall del servidor.
 ```
 systemctl disable firewalld.service
