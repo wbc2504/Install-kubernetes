@@ -14,9 +14,7 @@ Este es un paso a paso instalación de kubernetes con kubeadm.
 ```
 vim /etc/fstab
 ```
-Comentamos la siguiente linea:
-
-![image](https://github.com/user-attachments/assets/e0285564-cd85-4d0f-8a06-05c259487099)
+Comentamos la linea # /dev/mapper/vg_system-lv_swap none
 
 ####  Cambiar SELINUX a modo permisivo para que los contenedores puedan acceder a los archivos del sistema. 
 ```
