@@ -119,9 +119,6 @@ vim calico.yaml
 ````
 Buscar la sesion CALICO_IPV4POOL_CIDR e indicarl el CIDR utilizado para la instalación del cluster:
 
-
-![image](https://github.com/user-attachments/assets/ec6af479-8f08-483a-baf7-1713a240abf8)
-
 ####  Aplicamos el archivo ya configurado.
 ```
 kubectl apply -f calico.yaml
