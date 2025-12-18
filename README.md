@@ -25,6 +25,7 @@ net.bridge.bridge-nf-call-ip6tables = 1
 net.ipv4.ip_forward = 1
 EOF
 ```
+
 ## 📌 Instalacion del runtime, en este caso intalaremos containerd:
 
   * Desinstalar todo rastro de docker o otro runtime en el servidor.
@@ -54,6 +55,7 @@ sudo dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker
 ```
 systemctl enable --now containerd
 ```
+
 ## 📌 Instalacion de kubernetes:
 
   * Configurar repositorio para descargar paquetes de Kubernetes
@@ -96,17 +98,25 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 Nota: No dar permisos al usuario root para kubectl.
 
+
 ## 📌Instalación del complemento de red:
 
+  * Instalación calico.
+```
 sudo curl https://raw.githubusercontent.com/projectcalico/calico/v3.29.2/manifests/calico.yaml -O
+```
+```
 vim calico.yaml
-buscar la sesion CALICO_IPV4POOL_CIDR e indicarl el CIDR utilizado para la instalación del cluster:
+````
+Buscar la sesion CALICO_IPV4POOL_CIDR e indicarl el CIDR utilizado para la instalación del cluster:
 
 
 ![image](https://github.com/user-attachments/assets/ec6af479-8f08-483a-baf7-1713a240abf8)
 
+  * Aplicamos el archivo ya configurado.
+```
 kubectl apply -f calico.yaml
-
+```
 
 
 
