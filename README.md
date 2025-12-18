@@ -24,8 +24,9 @@ net.bridge.bridge-nf-call-ip6tables = 1
 net.ipv4.ip_forward = 1
 EOF
 ```
-5- Instalacion de containerd:
-
+  * Instalacion del runtime, en este caso intalaremos containerd:
+  * * Desinstalar todo rastro de docker o otro runtime en el servidor
+```
 sudo dnf remove docker \
                   docker-client \
                   docker-client-latest \
@@ -36,7 +37,7 @@ sudo dnf remove docker \
                   docker-engine \
                   podman \
                   runc
-                  
+```                  
 sudo dnf -y install dnf-plugins-core
 sudo dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo
 en la ruta /etc/containerd agregamos el archivo config.toml adjunto
