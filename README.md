@@ -5,22 +5,25 @@
 ```
 systemctl disable firewalld.service
 ```
-  * vim /etc/fstab comentar la linea siguiente:
-
+  * Desactivar la swap
+```
+vim /etc/fstab
+```
+Comentamos la siguiente linea:
 ![image](https://github.com/user-attachments/assets/e0285564-cd85-4d0f-8a06-05c259487099)
 
-3- cambiar SELINUX a modo permisivo para que los contenedores puedan acceder a los archivos del sistema. 
-
+  * Cambiar SELINUX a modo permisivo para que los contenedores puedan acceder a los archivos del sistema. 
+```
 sudo sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
-
-4- El siguiente comando configura el reenvio de paquetes entre servidores:
-
+```
+  * El siguiente comando configura el reenvio de paquetes entre servidores:
+```
 cat <<EOF | tee /etc/sysctl.d/99-kubernetes-cri.conf
 net.bridge.bridge-nf-call-iptables = 1
 net.bridge.bridge-nf-call-ip6tables = 1
 net.ipv4.ip_forward = 1
 EOF
-
+```
 5- Instalacion de containerd:
 
 sudo dnf remove docker \
