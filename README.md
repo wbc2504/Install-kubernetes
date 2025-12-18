@@ -1,5 +1,5 @@
-# Install-kubernetes
-Instalación de un cluster  de Kubernetes de manera manual
+# 📘  Install-kubernetes
+# Instalación de un cluster  de Kubernetes de manera manual
 
 Prerrequisitos de sistema operativo:
 1- systemctl status firewalld.service
