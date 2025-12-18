@@ -1,5 +1,5 @@
-# <img width="100" height="100" alt="image" src="https://github.com/user-attachments/assets/e62c4f1b-b773-4502-9d49-d7adb3163929" />
- Instalación de un cluster  de Kubernetes de k8s con kubeadm
+# Instalación de un cluster  de Kubernetes de k8s con kubeadm <img width="100" height="100" alt="image" src="https://github.com/user-attachments/assets/e62c4f1b-b773-4502-9d49-d7adb3163929" />
+
 
 ## 📌Prerrequisitos de sistema operativo:
 #### Desactivar firewall del servidor.
