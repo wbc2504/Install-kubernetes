@@ -31,7 +31,7 @@ net.ipv4.ip_forward = 1
 EOF
 ```
 
-## 📌 Instalacion del runtime, en este caso intalaremos containerd:
+## <img width="50" height="30" alt="image" src="https://github.com/user-attachments/assets/855930db-d4d5-4a73-ad64-ce272a187561" /> Instalacion del runtime, en este caso intalaremos containerd:
 
 #### Desinstalar todo rastro de docker o otro runtime en el servidor.
 ```
