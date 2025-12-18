@@ -1,8 +1,8 @@
 # <img width="50" height="30" alt="image" src="https://github.com/user-attachments/assets/e62c4f1b-b773-4502-9d49-d7adb3163929" /> Instalación de un cluster  de Kubernetes de k8s con kubeadm 
 
 Este es un paso a paso instalación de kubernetes con kubeadm.
-** Sistema operativo Rocky Linux 9.6 (Blue Onyx)
-** Kubernetes v1.32.5
+ * Sistema operativo Rocky Linux 9.6 (Blue Onyx)
+ * Kubernetes v1.32.5
 
 
 ## <img width="50" height="30" alt="image" src="https://github.com/user-attachments/assets/edaddf0d-4d6b-48ea-925b-577c55775b69" /> Prerrequisitos de sistema operativo:
