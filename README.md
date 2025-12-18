@@ -48,9 +48,9 @@ sudo dnf -y install dnf-plugins-core
 ```
 sudo dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo
 ```
-  * En la ruta /etc/containerd agregamos el archivo config.toml adjunto
+  * En la ruta /etc/containerd agregamos el archivo config.toml adjunto en este repo
 
-  *Habilitamos el servicio para que inicie con el sistema opeartivo.
+  * Habilitamos el servicio para que inicie con el sistema opeartivo.
 ```
 systemctl enable --now containerd
 ```
