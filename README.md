@@ -10,6 +10,7 @@ systemctl disable firewalld.service
 vim /etc/fstab
 ```
 Comentamos la siguiente linea:
+
 ![image](https://github.com/user-attachments/assets/e0285564-cd85-4d0f-8a06-05c259487099)
 
   * Cambiar SELINUX a modo permisivo para que los contenedores puedan acceder a los archivos del sistema. 
