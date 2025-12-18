@@ -5,7 +5,6 @@ Este es un paso a paso instalación de kubernetes con kubeadm.
  * Kubernetes v1.32.5
 
 
-
 ## <img width="50" height="30" alt="image" src="https://github.com/user-attachments/assets/edaddf0d-4d6b-48ea-925b-577c55775b69" /> Prerrequisitos de sistema operativo:
 #### Desactivar firewall del servidor.
  ```
