@@ -1,4 +1,4 @@
-# 📘 Instalación de un cluster  de Kubernetes K8S manera manual
+# 📘 Instalación de un cluster  de Kubernetes k8s manera manual
 
 ## 📌Prerrequisitos de sistema operativo:
  * Desactivar firewall del servidor.
