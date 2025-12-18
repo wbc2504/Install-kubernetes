@@ -25,7 +25,7 @@ net.ipv4.ip_forward = 1
 EOF
 ```
   * Instalacion del runtime, en este caso intalaremos containerd:
-  * * Desinstalar todo rastro de docker o otro runtime en el servidor
+   * Desinstalar todo rastro de docker o otro runtime en el servidor
 ```
 sudo dnf remove docker \
                   docker-client \
