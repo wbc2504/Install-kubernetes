@@ -5,6 +5,7 @@ Este es un paso a paso instalación de kubernetes con kubeadm.
  * Kubernetes v1.32.5
 
 
+
 ## <img width="50" height="30" alt="image" src="https://github.com/user-attachments/assets/edaddf0d-4d6b-48ea-925b-577c55775b69" /> Prerrequisitos de sistema operativo:
 #### Desactivar firewall del servidor.
  ```
@@ -30,6 +31,8 @@ net.bridge.bridge-nf-call-ip6tables = 1
 net.ipv4.ip_forward = 1
 EOF
 ```
+
+
 
 ## <img width="50" height="30" alt="image" src="https://github.com/user-attachments/assets/855930db-d4d5-4a73-ad64-ce272a187561" /> Instalacion del runtime, en este caso intalaremos containerd:
 
@@ -60,6 +63,8 @@ En la ruta /etc/containerd agregamos el archivo config.toml adjunto en este repo
 ```
 systemctl enable --now containerd
 ```
+
+
 
 ## <img width="50" height="30" alt="image" src="https://github.com/user-attachments/assets/8cde9c1c-b029-4b9b-9175-cc84217cafbe" /> Instalacion de kubernetes:
 
@@ -102,6 +107,7 @@ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 Nota: No dar permisos al usuario root para kubectl.
+
 
 
 ## <img width="70" height="30" alt="image" src="https://github.com/user-attachments/assets/309d0d15-e6a4-4460-8340-4437da98c294" /> Instalación del complemento de red:
