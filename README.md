@@ -1,9 +1,9 @@
 # 📘  Install-kubernetes
 # Instalación de un cluster  de Kubernetes de manera manual
 
-Prerrequisitos de sistema operativo:
-1- systemctl status firewalld.service
-2- vim /etc/fstab comentar la linea siguiente:
+# Prerrequisitos de sistema operativo:
+  * systemctl status firewalld.service
+  * vim /etc/fstab comentar la linea siguiente:
 
 ![image](https://github.com/user-attachments/assets/e0285564-cd85-4d0f-8a06-05c259487099)
 
