@@ -137,7 +137,15 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 Nota: No dar permisos al usuario root para kubectl.
 
+#### Unir nodos worker
 
+```
+kubeadm token create --print-join-command
+```
+
+```
+kubeadm join 192.xxx.xx.xx:6443 --token abcdef.0123456789abcdef --discovery-token-ca-cert-hash sha256:526c5...
+```
 
 ## <img width="70" height="30" alt="image" src="https://github.com/user-attachments/assets/309d0d15-e6a4-4460-8340-4437da98c294" /> Instalación del complemento de red:
 
@@ -153,6 +161,12 @@ Buscar la sesion CALICO_IPV4POOL_CIDR e indicarl el CIDR utilizado para la insta
 ####  Aplicamos el archivo ya configurado.
 ```
 kubectl apply -f calico.yaml
+```
+
+Al instalar el complemento de red los nodos deben cambiar de estado NoReady a Ready, verificar con el comando
+
+```
+kubectl get nodes
 ```
 
 
