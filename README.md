@@ -1,6 +1,6 @@
 # <img width="50" height="30" alt="image" src="https://github.com/user-attachments/assets/e62c4f1b-b773-4502-9d49-d7adb3163929" /> Instalación de un cluster de Kubernetes k8s con kubeadm 
 
-Paso a paso para la instalación de kubernetes con kubeadm. Se instalara un cluster de alta disponibilidad con 3 nodos master y 4 nodos worker, utilizando HAPROXY para balanceo de los master y a su vez keepalive para generar alta disponibilidad a estos ultimos 
+Paso a paso para la instalación de kubernetes con kubeadm. Se instalara un cluster de alta disponibilidad con 3 nodos master y 4 nodos worker, utilizando HAPROXY para balanceo de los master y a su vez keepalive para generar alta disponibilidad a estos ultimos.
 
  * Sistema operativo Rocky Linux 9.6 (Blue Onyx)
  * Kubernetes v1.32.5
