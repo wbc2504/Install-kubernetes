@@ -5,6 +5,37 @@ Paso a paso para la instalación de kubernetes con kubeadm. Se instalara un clus
  * Sistema operativo Rocky Linux 9.6 (Blue Onyx)
  * Kubernetes v1.32.5
 
+## <img width="50" height="30" alt="image" src="https://github.com/user-attachments/assets/ec49154f-6d7d-4902-b304-8fb99a8c24dd" /> Instalacion de los HAPROXY
+
+##### Se realiza la instalación del servicio de HAPROXY y keepalived en los dos servidores, tanto el activo como el pasivo.
+
+```
+yum install keepalived haproxy psmisc -y
+```
+En la ruta /etc/haproxy se crea el archivo de configuración tomando como base el que esta adjunto en el proyecto haproxy.cfg y en la ruta /etc/keepalived tambien se crear el archivo de configuración con base a keepalived.conf
+
+#### Se habilitan los servicios
+
+```
+systemctl enable haproxy
+systemctl enable keepalived
+```
+
+#### Se arranca el servicio de keepalived en ambos servidores
+
+```
+systemctl start keepalived
+```
+Se comprueba que en el nodo activo se encuentre mapeada la ip virtual sobre la interfaz del servidor
+
+```
+ip a
+```
+#### Se arranca el servicio de HAPROXY en ambos servidores
+
+```
+systemctl start haproxy
+```
 
 ## <img width="50" height="30" alt="image" src="https://github.com/user-attachments/assets/edaddf0d-4d6b-48ea-925b-577c55775b69" /> Prerrequisitos de sistema operativo:
 ####  Desactivar firewall del servidor.
