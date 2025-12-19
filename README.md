@@ -12,7 +12,7 @@ Paso a paso para la instalación de kubernetes con kubeadm. Se instalara un clus
 ```
 yum install keepalived haproxy psmisc -y
 ```
-En la ruta /etc/haproxy se crea el archivo de configuración tomando como base el que esta adjunto en el proyecto haproxy.cfg y en la ruta /etc/keepalived tambien se crear el archivo de configuración con base a keepalived.conf
+En la ruta /etc/haproxy se crea el archivo de configuración haproxy.cfg tomando como base el que esta adjunto en el proyecto  y en la ruta /etc/keepalived tambien se crear el archivo de configuración keepalived.conf con base al adjunto en el proyecto. 
 
 #### Se habilitan los servicios
 
