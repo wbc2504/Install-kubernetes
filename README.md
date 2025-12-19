@@ -26,7 +26,7 @@ systemctl enable keepalived
 ```
 systemctl start keepalived
 ```
-Se comprueba que en el nodo activo se encuentre mapeada la ip virtual sobre la interfaz del servidor
+Se comprueba que en el nodo activo (MASTER) se encuentre mapeada la ip virtual sobre la interfaz del servidor
 
 ```
 ip a
