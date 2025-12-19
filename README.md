@@ -14,24 +14,24 @@ yum install keepalived haproxy psmisc -y
 ```
 En la ruta /etc/haproxy se crea el archivo de configuración haproxy.cfg tomando como base el que esta adjunto en el proyecto  y en la ruta /etc/keepalived tambien se crear el archivo de configuración keepalived.conf con base al adjunto en el proyecto. 
 
-#### Se habilitan los servicios
+#### Se habilitan los servicios.
 
 ```
 systemctl enable haproxy
 systemctl enable keepalived
 ```
 
-#### Se arranca el servicio de keepalived en ambos servidores
+#### Se arranca el servicio de keepalived en ambos servidores.
 
 ```
 systemctl start keepalived
 ```
-Se comprueba que en el nodo activo (MASTER) se encuentre mapeada la ip virtual sobre la interfaz del servidor
+Se comprueba que en el nodo activo (MASTER) se encuentre mapeada la ip virtual sobre la interfaz del servidor.
 
 ```
 ip a
 ```
-#### Se arranca el servicio de HAPROXY en ambos servidores
+#### Se arranca el servicio de HAPROXY en ambos servidores.
 
 ```
 systemctl start haproxy
