@@ -155,7 +155,7 @@ kubeadm join 192.xxx.xx.xx:6443 --token abcdef.0123456789abcdef --discovery-toke
 
 ####  Instalación calico.
 ```
-sudo curl https://raw.githubusercontent.com/projectcalico/calico/v3.29.2/manifests/calico.yaml -O
+sudo curl https://raw.githubusercontent.com/projectcalico/calico/v3.29.7/manifests/calico.yaml -O
 ```
 ```
 vim calico.yaml
