@@ -91,6 +91,7 @@ En la ruta /etc/containerd agregamos el archivo config.toml adjunto en este repo
 #### Instalamos containerd
 ```
 dnf install containerd
+```
 ####  Habilitamos el servicio para que inicie con el sistema opeartivo.
 ```
 systemctl enable --now containerd
